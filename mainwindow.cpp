@@ -11,9 +11,16 @@ QT_CHARTS_USE_NAMESPACE
 #include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QValueAxis>
 
+// Main Struct
+struct process
+{
+    int burst_time, process_num, waiting_time, arrival_time, remaining_time;
+};
 
-QVector<QVector<QString>> processes;
-//QStringList processes;
+
+// Processes main vector
+QVector<process> processes;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -36,14 +43,17 @@ void MainWindow::on_pushButton_clicked()
     QString processName = ui->proccesName->text();
     QString arrivalTime = ui->arrivalTime->text();
     QString burstTime = ui->burstTime->text();
-    QVector<QString> temp;
-    temp.append(processName);
-    temp.append(arrivalTime);
-    temp.append(burstTime);
-    processes.append(temp);
-    ui->textBrowser->append("Process: " + temp[0]);
-    ui->textBrowser->append("Arrival Time: " + temp[1]);
-    ui->textBrowser->append("Burst Time: " + temp[2]);
+
+    process tempSt;
+    tempSt.burst_time = ui->burstTime->text().toInt();
+    tempSt.process_num = ui->proccesName->text().toInt();
+    tempSt.arrival_time = ui->arrivalTime->text().toInt();
+    processes.append(tempSt);
+
+
+    ui->textBrowser->append("Process: " + QString::number(tempSt.process_num));
+    ui->textBrowser->append("Arrival Time: " + QString::number(tempSt.arrival_time));
+    ui->textBrowser->append("Burst Time: " + QString::number(tempSt.burst_time));
     ui->textBrowser->append(" ");
 
 
@@ -77,8 +87,8 @@ void MainWindow::on_pushButton_2_clicked()
 
 
     for (int i=0; i<processes.size() ;i++ ) {
-          QBarSet *set0 = new QBarSet(processes[i][0]);
-           *set0 << processes[i][2].toInt() ;
+          QBarSet *set0 = new QBarSet(QString::number(processes[i].process_num));
+           *set0 << processes[i].burst_time;
            series->append(set0);
     }
 

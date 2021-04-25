@@ -41,7 +41,7 @@ color:white;
 }</string>
           </property>
           <property name="text">
-           <string>Process Name</string>
+           <string>Process Number</string>
           </property>
          </widget>
         </item>
@@ -264,7 +264,7 @@ color: white;
 }</string>
         </property>
         <property name="text">
-         <string>RadioButton</string>
+         <string>Piority</string>
         </property>
        </widget>
       </item>
