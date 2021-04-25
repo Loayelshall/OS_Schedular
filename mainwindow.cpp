@@ -8,10 +8,12 @@
 #include <QtCharts/QBarSet>
 QT_CHARTS_USE_NAMESPACE
 #include <QtCharts/QHorizontalStackedBarSeries>
+#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QValueAxis>
 
 
 QVector<QVector<QString>> processes;
-
+//QStringList processes;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -35,10 +37,10 @@ void MainWindow::on_pushButton_clicked()
     QString arrivalTime = ui->arrivalTime->text();
     QString burstTime = ui->burstTime->text();
     QVector<QString> temp;
-    temp.push_back(processName);
-    temp.push_back(arrivalTime);
-    temp.push_back(burstTime);
-    processes.push_back(temp);
+    temp.append(processName);
+    temp.append(arrivalTime);
+    temp.append(burstTime);
+    processes.append(temp);
     ui->textBrowser->append("Process: " + temp[0]);
     ui->textBrowser->append("Arrival Time: " + temp[1]);
     ui->textBrowser->append("Burst Time: " + temp[2]);
@@ -71,38 +73,27 @@ void MainWindow::on_pushButton_2_clicked()
 
 
 
-    QBarSet *set0 = new QBarSet("Altuve");
-    QBarSet *set1 = new QBarSet("Martinez");
-    QBarSet *set2 = new QBarSet("Segura");
-    QBarSet *set3 = new QBarSet("Simmons");
-    QBarSet *set4 = new QBarSet("Trout");
+    QHorizontalStackedBarSeries *series = new QHorizontalStackedBarSeries();
 
 
-    *set0 << 283 ;
-    *set1 << 250 ;
-    *set2 << 294 ;
-    *set3 << 248 ;
-    *set4 << 323 ;
-
-
-     QHorizontalStackedBarSeries *series = new QHorizontalStackedBarSeries();
-    series->append(set0);
-    series->append(set1);
-    series->append(set2);
-    series->append(set3);
-    series->append(set4);
+    for (int i=0; i<processes.size() ;i++ ) {
+          QBarSet *set0 = new QBarSet(processes[i][0]);
+           *set0 << processes[i][2].toInt() ;
+           series->append(set0);
+    }
 
     QChart *chart = new QChart();
 
 
-//    chart->addSeries(series);
 
 
 
     chart->setAnimationOptions(QChart::AllAnimations);
 
-    QStringList categories;
-    categories << "2013" << "2014" << "2015" << "2016" << "2017" << "2018";
+
+    QValueAxis *axisX = new QValueAxis();
+    chart->addAxis(axisX, Qt::AlignBottom);
+    series->attachAxis(axisX);
 
 
 
