@@ -17,6 +17,7 @@ HEADERS += \
 
 FORMS += \
     mainwindow.ui
+QT += charts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

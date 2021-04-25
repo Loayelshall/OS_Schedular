@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>818</width>
-    <height>574</height>
+    <width>832</width>
+    <height>603</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,26 +22,10 @@ background: #02475e;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2">
+   <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="2" column="0">
-       <widget class="QTextBrowser" name="textBrowser">
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
-	border-radius: 5px;
-	border: 2px;
-	padding: 1px;
-}</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QLabel" name="label">
@@ -132,7 +116,7 @@ color:white;
         </item>
        </layout>
       </item>
-      <item row="1" column="0">
+      <item>
        <widget class="QLabel" name="label_4">
         <property name="font">
          <font>
@@ -151,7 +135,140 @@ color: white;
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
+      <item>
+       <widget class="QTextBrowser" name="textBrowser">
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+	border-radius: 5px;
+	border: 2px;
+	padding: 1px;
+}</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+margin-top : 10px;
+color: white;
+}</string>
+        </property>
+        <property name="text">
+         <string>Scheduling Algorithms : </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="fcfs">
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton{
+
+color: white;
+}</string>
+        </property>
+        <property name="text">
+         <string>FCFS</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="sjf">
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton{
+
+color: white;
+}</string>
+        </property>
+        <property name="text">
+         <string>SJF</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="rr">
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton{
+
+color: white;
+}</string>
+        </property>
+        <property name="text">
+         <string>RR</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="quantumPeriod">
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Please enter quantum period</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+	border-radius: 5px;
+	border: 2px;
+	padding: 1px;
+}</string>
+        </property>
+        <property name="placeholderText">
+         <string>Please enter quantum period</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioButton_4">
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton{
+
+color: white;
+}</string>
+        </property>
+        <property name="text">
+         <string>RadioButton</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pushButton">
         <property name="font">
          <font>
@@ -172,7 +289,7 @@ height: 30px;
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item>
        <widget class="QPushButton" name="pushButton_2">
         <property name="font">
          <font>
@@ -202,7 +319,7 @@ height: 30px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>818</width>
+     <width>832</width>
      <height>21</height>
     </rect>
    </property>
