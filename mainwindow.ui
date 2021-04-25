@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>832</width>
-    <height>603</height>
+    <width>966</width>
+    <height>627</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -140,13 +140,16 @@ color: white;
         <property name="font">
          <font>
           <family>Century Gothic</family>
+          <pointsize>12</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QLineEdit {
+         <string notr="true">QTextBrowser {
 	border-radius: 5px;
 	border: 2px;
 	padding: 1px;
+	background-color: #6e7582;
+	color: white;
 }</string>
         </property>
        </widget>
@@ -171,7 +174,38 @@ color: white;
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="fcfs">
+       <widget class="QComboBox" name="schedularType">
+        <property name="styleSheet">
+         <string notr="true">QComboBox{
+border-radius: 5px;
+min-height: 30px;
+background-color: #f8f5f1;
+}</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>FCFS</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>SJF</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>RR</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Priority</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="preLabel">
         <property name="font">
          <font>
           <family>Century Gothic</family>
@@ -179,18 +213,39 @@ color: white;
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QRadioButton{
-
+         <string notr="true">QLabel{
 color: white;
+margin-left: 5px;
 }</string>
         </property>
         <property name="text">
-         <string>FCFS</string>
+         <string>Preemption</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="sjf">
+       <widget class="QComboBox" name="preBox">
+        <property name="styleSheet">
+         <string notr="true">QComboBox{
+border-radius: 5px;
+min-height: 30px;
+background-color: #f8f5f1;
+}</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Preemptive</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Non-Preemptive</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="pioLabel">
         <property name="font">
          <font>
           <family>Century Gothic</family>
@@ -198,33 +253,40 @@ color: white;
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QRadioButton{
-
+         <string notr="true">QLabel{
 color: white;
+margin-left: 5px;
 }</string>
         </property>
         <property name="text">
-         <string>SJF</string>
+         <string>Same Pirority Algorithm</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="rr">
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
+       <widget class="QComboBox" name="piSameType">
         <property name="styleSheet">
-         <string notr="true">QRadioButton{
-
-color: white;
+         <string notr="true">QComboBox{
+border-radius: 5px;
+min-height: 30px;
+background-color: #f8f5f1;
 }</string>
         </property>
-        <property name="text">
-         <string>RR</string>
-        </property>
+        <item>
+         <property name="text">
+          <string>FCFS</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>SJF</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>RR</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item>
@@ -242,29 +304,11 @@ color: white;
 	border-radius: 5px;
 	border: 2px;
 	padding: 1px;
+	min-height: 25px;
 }</string>
         </property>
         <property name="placeholderText">
          <string>Please enter quantum period</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioButton_4">
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QRadioButton{
-
-color: white;
-}</string>
-        </property>
-        <property name="text">
-         <string>Piority</string>
         </property>
        </widget>
       </item>
@@ -290,7 +334,7 @@ height: 30px;
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="simulateButton">
         <property name="font">
          <font>
           <family>Century Gothic</family>
@@ -299,10 +343,11 @@ height: 30px;
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton{
-background-color: #687980;
+background-color: #f0a500;
 color:white;
 border-radius: 4px;
 height: 30px;
+color: black;
 }</string>
         </property>
         <property name="text">
@@ -319,7 +364,7 @@ height: 30px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>832</width>
+     <width>966</width>
      <height>21</height>
     </rect>
    </property>

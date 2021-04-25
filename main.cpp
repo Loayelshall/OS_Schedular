@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "numberProcesses.h"
 
 #include <QApplication>
 #include <QtCharts/QChartView>
@@ -11,7 +12,8 @@ QT_CHARTS_USE_NAMESPACE
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+//    MainWindow w;
+    numberProcesses w;
 //    w.show();
 
 

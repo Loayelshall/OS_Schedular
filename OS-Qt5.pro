@@ -10,13 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    numberprocesses.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    numberprocesses.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    numberprocesses.ui
 QT += charts
 
 # Default rules for deployment.

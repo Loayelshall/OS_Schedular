@@ -17,9 +17,12 @@ struct process
     int burst_time, process_num, waiting_time, arrival_time, remaining_time;
 };
 
+// Processes number
+int processesNo;
 
 // Processes main vector
 QVector<process> processes;
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -27,6 +30,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->quantumPeriod->hide();
+    ui->piSameType->hide();
+    ui->pioLabel->hide();
+    ui->preLabel->hide();
+    ui->preBox->hide();
+    ui->simulateButton->setEnabled(false);
 
 
 }
@@ -56,11 +64,44 @@ void MainWindow::on_pushButton_clicked()
     ui->textBrowser->append("Burst Time: " + QString::number(tempSt.burst_time));
     ui->textBrowser->append(" ");
 
+    ui->simulateButton->setEnabled(true);
 
 
 }
 
-void MainWindow::on_pushButton_2_clicked()
+
+
+
+void MainWindow::on_schedularType_currentIndexChanged(const QString &arg1)
+{
+    if(arg1 == "RR"){
+        ui->quantumPeriod->show();
+        ui->piSameType->hide();
+        ui->preBox->hide();
+
+    } else if(arg1 == "Priority"){
+        ui->quantumPeriod->hide();
+        ui->piSameType->show();
+        ui->preBox->show();
+        ui->pioLabel->show();
+        ui->preLabel->show();
+
+    } else if(arg1 == "SJF"){
+        ui->quantumPeriod->hide();
+        ui->piSameType->hide();
+        ui->preBox->show();
+        ui->pioLabel->hide();
+        ui->preLabel->show();
+    } else {
+        ui->quantumPeriod->hide();
+        ui->piSameType->hide();
+        ui->preBox->hide();
+        ui->pioLabel->hide();
+        ui->preLabel->hide();
+    }
+}
+
+void MainWindow::on_simulateButton_clicked()
 {
     // Hide process inputs
     ui->proccesName->hide();
@@ -72,12 +113,11 @@ void MainWindow::on_pushButton_2_clicked()
     ui->label_4->hide();
     ui->textBrowser->hide();
     ui->pushButton->hide();
-    ui->pushButton_2->hide();
-    ui->fcfs->hide();
-    ui->rr->hide();
-    ui->sjf->hide();
-    ui->radioButton_4->hide();
+    ui->simulateButton->hide();
     ui->label_5->hide();
+
+
+
 
     // Display Options
 
@@ -87,9 +127,11 @@ void MainWindow::on_pushButton_2_clicked()
 
 
     for (int i=0; i<processes.size() ;i++ ) {
-          QBarSet *set0 = new QBarSet(QString::number(processes[i].process_num));
-           *set0 << processes[i].burst_time;
-           series->append(set0);
+            QBarSet *set0 = new QBarSet(QString::number(processes[i].process_num));
+            *set0 << processes[i].burst_time;
+            series->append(set0);
+            QColor color = 0xfffff - (processes[i].process_num)*50;
+            set0->setColor(color);
     }
 
     QChart *chart = new QChart();
@@ -116,7 +158,7 @@ void MainWindow::on_pushButton_2_clicked()
 
     QPalette pal = qApp->palette();
 
-    pal.setColor(QPalette::Window, QRgb(0xffffff));
+    pal.setColor(QPalette::Window, QRgb(0x02475e));
     pal.setColor(QPalette::WindowText, QRgb(0x404044));
 
     qApp->setPalette(pal);
@@ -125,44 +167,10 @@ void MainWindow::on_pushButton_2_clicked()
 
     chart->addSeries(series);
     chart->setTitle("Processes");
-    chart->legend()->hide();
-
-    chartView->setRenderHint(QPainter::Antialiasing);
 
 
-//MainWindow w;
-setCentralWidget(chartView);
-show();
 
+    setCentralWidget(chartView);
+    show();
 
 }
-
-
-
-
-void MainWindow::on_rr_toggled(bool checked)
-{
-    if(checked){
-        ui->rr->setChecked(true);
-        ui->quantumPeriod->show();
-    } else {
-        ui->rr->setChecked(false);
-        ui->quantumPeriod->hide();
-    }
-
-}
-
-void MainWindow::on_rr_clicked(bool checked)
-{
-    if(checked){
-        ui->rr->setChecked(true);
-        ui->quantumPeriod->show();
-    } else {
-        ui->rr->setChecked(false);
-        ui->quantumPeriod->hide();
-    }
-}
-
-
-
-
