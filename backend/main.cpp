@@ -17,8 +17,9 @@ int main()
     cin >> sched_type;
     if (sched_type == 1)
     {
-        vector<process> fcfs_process(num_of_proceses);
+        vector<process> fcfs_process(num_of_proceses), fcfs_process_new;
         sum_of_burst_time = FCFS::get_input_burst_and_arrival_time(fcfs_process, num_of_proceses);
+        FCFS::calc_new_order(fcfs_process, fcfs_process_new, num_of_proceses);
         FCFS::calc_waiting_time(fcfs_process, num_of_proceses);
         FCFS::print_waiting_time_avg_waiting_time(fcfs_process, num_of_proceses);
     }
