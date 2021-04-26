@@ -6,3 +6,4 @@ backend/main.o
 backend/main
 backend/FCFS.o
 backend/FCFS
+backend/PRI.o
