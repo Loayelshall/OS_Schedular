@@ -14,7 +14,7 @@ QT_CHARTS_USE_NAMESPACE
 // Main Struct
 struct process
 {
-    int burst_time, process_num, waiting_time, arrival_time, remaining_time;
+    int burst_time, process_num, waiting_time, arrival_time, remaining_time, start_time;
 };
 
 // Processes number
@@ -124,28 +124,44 @@ void MainWindow::on_simulateButton_clicked()
 
 
     QHorizontalStackedBarSeries *series = new QHorizontalStackedBarSeries();
+    QValueAxis *axisX = new QValueAxis();
 
 
+    int max = 0;
     for (int i=0; i<processes.size() ;i++ ) {
+            if(i != 0){
+                int prev = processes[i-1].arrival_time+processes[i-1].burst_time;
+                if(processes[i].arrival_time > prev){
+                    QBarSet *set0 = new QBarSet("Empty");
+                    *set0 << processes[i].arrival_time - prev;
+                    series->append(set0);
+                    QColor color = 0xffffff;
+                    set0->setColor(color);
+
+                }
+            }
+
             QBarSet *set0 = new QBarSet(QString::number(processes[i].process_num));
             *set0 << processes[i].burst_time;
             series->append(set0);
             QColor color = 0xfffff - (processes[i].process_num)*50;
             set0->setColor(color);
+
+            if(max < processes[i].arrival_time+processes[i].burst_time){
+                max = processes[i].arrival_time+processes[i].burst_time;
+            }
     }
 
     QChart *chart = new QChart();
 
-
-
-
+    axisX->setRange(0,max);
+    series->attachAxis(axisX);
 
     chart->setAnimationOptions(QChart::AllAnimations);
 
 
-    QValueAxis *axisX = new QValueAxis();
     chart->addAxis(axisX, Qt::AlignBottom);
-    series->attachAxis(axisX);
+
 
 
 
@@ -167,6 +183,9 @@ void MainWindow::on_simulateButton_clicked()
 
     chart->addSeries(series);
     chart->setTitle("Processes");
+
+
+
 
 
 
