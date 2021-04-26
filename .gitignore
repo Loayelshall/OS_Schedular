@@ -1,3 +1,8 @@
 .vscode/tasks.json
 .vscode/settings.json
 .vscode/launch.json
+backend/SJF.o
+backend/main.o
+backend/main
+backend/FCFS.o
+backend/FCFS
