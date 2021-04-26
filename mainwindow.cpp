@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QVector2D>
+#include <QVector>
+#include <algorithm>
 
 #include <QApplication>
 #include <QtCharts/QChartView>
@@ -11,14 +12,42 @@ QT_CHARTS_USE_NAMESPACE
 #include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QValueAxis>
 
-// Main Struct
+// Processes number
+int processesNo;
+
+
 struct process
 {
     int burst_time, process_num, waiting_time, arrival_time, remaining_time, start_time;
 };
 
-// Processes number
-int processesNo;
+
+// Calculating avg waiting time
+float calculateAvgWaitingTime(QVector<process> processes){
+    float avgWaiting = 0;
+    QVector<process> unique;
+    unique.append(processes[0]);
+    for (int i = 1; i<processes.size() ;i++ ) {
+        int didFind = 0;
+        for(int j = 0; j < unique.size() ; j++){
+            if(processes[i].arrival_time == unique[j].arrival_time &&
+                    processes[i].process_num == unique[j].process_num &&
+                        processes[i].burst_time == unique[j].burst_time){
+                didFind = 1;
+            }
+        }
+        if(didFind == 0){
+            unique.append(processes[i]);
+        }
+    }
+
+    for (int i = 0; i < unique.size() ; i++) {
+        avgWaiting = unique[i].start_time - unique[i].arrival_time;
+    }
+
+    return avgWaiting/unique.size();
+}
+
 
 // Processes main vector
 QVector<process> processes;
@@ -48,10 +77,6 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     // Taking input from user and saving it in a vector
-    QString processName = ui->proccesName->text();
-    QString arrivalTime = ui->arrivalTime->text();
-    QString burstTime = ui->burstTime->text();
-
     process tempSt;
     tempSt.burst_time = ui->burstTime->text().toInt();
     tempSt.process_num = ui->proccesName->text().toInt();
@@ -101,8 +126,12 @@ void MainWindow::on_schedularType_currentIndexChanged(const QString &arg1)
     }
 }
 
+
+
+
 void MainWindow::on_simulateButton_clicked()
 {
+
     // Hide process inputs
     ui->proccesName->hide();
     ui->arrivalTime->hide();
@@ -135,7 +164,7 @@ void MainWindow::on_simulateButton_clicked()
                     QBarSet *set0 = new QBarSet("Empty");
                     *set0 << processes[i].arrival_time - prev;
                     series->append(set0);
-                    QColor color = 0xffffff;
+                    QColor color = 0x687980;
                     set0->setColor(color);
 
                 }
@@ -164,7 +193,7 @@ void MainWindow::on_simulateButton_clicked()
 
 
 
-
+    QString alo = "tests";
 
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
@@ -190,6 +219,8 @@ void MainWindow::on_simulateButton_clicked()
 
 
     setCentralWidget(chartView);
+    w.setLabel(alo);
+    w.show();
     show();
 
 }

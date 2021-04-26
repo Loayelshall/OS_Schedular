@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "avgwaiting.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,6 +16,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
+
+
 private slots:
     void on_pushButton_clicked();
 
@@ -22,7 +26,11 @@ private slots:
 
     void on_simulateButton_clicked();
 
+
+
+
 private:
     Ui::MainWindow *ui;
+    avgWaiting w;
 };
 #endif // MAINWINDOW_H
