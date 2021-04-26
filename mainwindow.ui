@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>966</width>
-    <height>627</height>
+    <width>1170</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,339 +23,337 @@ background: #02475e;
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>Processes Table</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>Chart</string>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page_3">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <family>Century Gothic</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="font">
+             <font>
+              <family>Century Gothic</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
 color:white;
 }</string>
-          </property>
-          <property name="text">
-           <string>Process Number</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="proccesName">
-          <property name="styleSheet">
-           <string notr="true">QLineEdit {
+            </property>
+            <property name="text">
+             <string>Arrival Time</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="arrivalTime">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
 	border-radius: 5px;
 	border: 2px;
 	padding: 1px;
 }</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="font">
-           <font>
-            <family>Century Gothic</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="font">
+             <font>
+              <family>Century Gothic</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
 color:white;
 }</string>
-          </property>
-          <property name="text">
-           <string>Arrival Time</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="arrivalTime">
-          <property name="styleSheet">
-           <string notr="true">QLineEdit {
+            </property>
+            <property name="text">
+             <string>Burst Time</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="burstTime">
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
 	border-radius: 5px;
 	border: 2px;
 	padding: 1px;
 }</string>
-          </property>
-         </widget>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QLabel" name="label_3">
+         <widget class="QLabel" name="label_4">
           <property name="font">
            <font>
             <family>Century Gothic</family>
-            <pointsize>10</pointsize>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="styleSheet">
            <string notr="true">QLabel{
-color:white;
-}</string>
-          </property>
-          <property name="text">
-           <string>Burst Time</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="burstTime">
-          <property name="styleSheet">
-           <string notr="true">QLineEdit {
-	border-radius: 5px;
-	border: 2px;
-	padding: 1px;
-}</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_4">
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{
 margin-top : 10px;
 color: white;
 }</string>
-        </property>
-        <property name="text">
-         <string>Current Proccesses in queue</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QTextBrowser" name="textBrowser">
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QTextBrowser {
+          </property>
+          <property name="text">
+           <string>Current Proccesses in queue</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextBrowser" name="textBrowser">
+          <property name="font">
+           <font>
+            <family>Century Gothic</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTextBrowser {
 	border-radius: 5px;
 	border: 2px;
 	padding: 1px;
 	background-color: #6e7582;
 	color: white;
 }</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_5">
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextBrowser" name="table2"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="font">
+           <font>
+            <family>Century Gothic</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
 margin-top : 10px;
 color: white;
 }</string>
-        </property>
-        <property name="text">
-         <string>Scheduling Algorithms : </string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="schedularType">
-        <property name="styleSheet">
-         <string notr="true">QComboBox{
+          </property>
+          <property name="text">
+           <string>Scheduling Algorithms : </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="schedularType">
+          <property name="styleSheet">
+           <string notr="true">QComboBox{
 border-radius: 5px;
 min-height: 30px;
 background-color: #f8f5f1;
 }</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>FCFS</string>
-         </property>
+          </property>
+          <item>
+           <property name="text">
+            <string>FCFS</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SJF</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>RR</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Priority</string>
+           </property>
+          </item>
+         </widget>
         </item>
         <item>
-         <property name="text">
-          <string>SJF</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>RR</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Priority</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="preLabel">
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{
+         <widget class="QLabel" name="preLabel">
+          <property name="font">
+           <font>
+            <family>Century Gothic</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
 color: white;
 margin-left: 5px;
 }</string>
-        </property>
-        <property name="text">
-         <string>Preemption</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="preBox">
-        <property name="styleSheet">
-         <string notr="true">QComboBox{
+          </property>
+          <property name="text">
+           <string>Preemption</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="preBox">
+          <property name="styleSheet">
+           <string notr="true">QComboBox{
 border-radius: 5px;
 min-height: 30px;
 background-color: #f8f5f1;
 }</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Preemptive</string>
-         </property>
+          </property>
+          <item>
+           <property name="text">
+            <string>Preemptive</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Non-Preemptive</string>
+           </property>
+          </item>
+         </widget>
         </item>
         <item>
-         <property name="text">
-          <string>Non-Preemptive</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="pioLabel">
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel{
+         <widget class="QLabel" name="pioLabel">
+          <property name="font">
+           <font>
+            <family>Century Gothic</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
 color: white;
 margin-left: 5px;
 }</string>
-        </property>
-        <property name="text">
-         <string>Same Pirority Algorithm</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="piSameType">
-        <property name="styleSheet">
-         <string notr="true">QComboBox{
+          </property>
+          <property name="text">
+           <string>Same Pirority Algorithm</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="piSameType">
+          <property name="styleSheet">
+           <string notr="true">QComboBox{
 border-radius: 5px;
 min-height: 30px;
 background-color: #f8f5f1;
 }</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>FCFS</string>
-         </property>
+          </property>
+          <item>
+           <property name="text">
+            <string>FCFS</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SJF</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>RR</string>
+           </property>
+          </item>
+         </widget>
         </item>
         <item>
-         <property name="text">
-          <string>SJF</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>RR</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="quantumPeriod">
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-         </font>
-        </property>
-        <property name="toolTip">
-         <string>Please enter quantum period</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLineEdit {
+         <widget class="QLineEdit" name="quantumPeriod">
+          <property name="font">
+           <font>
+            <family>Century Gothic</family>
+           </font>
+          </property>
+          <property name="toolTip">
+           <string>Please enter quantum period</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
 	border-radius: 5px;
 	border: 2px;
 	padding: 1px;
 	min-height: 25px;
 }</string>
-        </property>
-        <property name="placeholderText">
-         <string>Please enter quantum period</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
+          </property>
+          <property name="placeholderText">
+           <string>Please enter quantum period</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="font">
+           <font>
+            <family>Century Gothic</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
 background-color: green;
 color:white;
 border-radius: 4px;
 height: 30px;
 }</string>
-        </property>
-        <property name="text">
-         <string>Add new process</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="simulateButton">
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
+          </property>
+          <property name="text">
+           <string>Add new process</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="simulateButton">
+          <property name="font">
+           <font>
+            <family>Century Gothic</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
 background-color: #f0a500;
 color:white;
 border-radius: 4px;
 height: 30px;
 color: black;
 }</string>
-        </property>
-        <property name="text">
-         <string>Simulate</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+          </property>
+          <property name="text">
+           <string>Simulate</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_4">
+       <layout class="QGridLayout" name="gridLayout_2"/>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -364,7 +362,7 @@ color: black;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>966</width>
+     <width>1170</width>
      <height>21</height>
     </rect>
    </property>
@@ -380,8 +378,8 @@ color: black;
    <slot>update()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>265</x>
-     <y>336</y>
+     <x>283</x>
+     <y>494</y>
     </hint>
     <hint type="destinationlabel">
      <x>352</x>

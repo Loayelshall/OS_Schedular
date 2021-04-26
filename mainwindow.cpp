@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QVector>
 #include <algorithm>
+#include <SJF.h>
 
 #include <QApplication>
 #include <QtCharts/QChartView>
@@ -11,15 +12,14 @@ QT_CHARTS_USE_NAMESPACE
 #include <QtCharts/QHorizontalStackedBarSeries>
 #include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QValueAxis>
+#include <QtCharts/QLineSeries>
+
 
 // Processes number
-int processesNo;
 
+int chartIndex;
 
-struct process
-{
-    int burst_time, process_num, waiting_time, arrival_time, remaining_time, start_time;
-};
+int currentIndex = 0;
 
 
 // Calculating avg waiting time
@@ -64,6 +64,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->preLabel->hide();
     ui->preBox->hide();
     ui->simulateButton->setEnabled(false);
+    ui->table2->hide();
+    ui->pushButton_3->hide();
+    ui->pushButton_2->hide();
 
 
 }
@@ -76,20 +79,24 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    // Taking input from user and saving it in a vector
-    process tempSt;
-    tempSt.burst_time = ui->burstTime->text().toInt();
-    tempSt.process_num = ui->proccesName->text().toInt();
-    tempSt.arrival_time = ui->arrivalTime->text().toInt();
-    processes.append(tempSt);
+    if(currentIndex < numberProccess){
+        // Taking input from user and saving it in a vector
+        process tempSt;
+        tempSt.burst_time = ui->burstTime->text().toInt();
+        tempSt.process_num = currentIndex;
+        tempSt.arrival_time = ui->arrivalTime->text().toInt();
+        processes.append(tempSt);
 
+        currentIndex++;
 
-    ui->textBrowser->append("Process: " + QString::number(tempSt.process_num));
-    ui->textBrowser->append("Arrival Time: " + QString::number(tempSt.arrival_time));
-    ui->textBrowser->append("Burst Time: " + QString::number(tempSt.burst_time));
-    ui->textBrowser->append(" ");
+        ui->textBrowser->append("Process: " + QString::number(tempSt.process_num));
+        ui->textBrowser->append("Arrival Time: " + QString::number(tempSt.arrival_time));
+        ui->textBrowser->append("Burst Time: " + QString::number(tempSt.burst_time));
+        ui->textBrowser->append(" ");
 
-    ui->simulateButton->setEnabled(true);
+        ui->simulateButton->setEnabled(true);
+    }
+
 
 
 }
@@ -133,10 +140,8 @@ void MainWindow::on_simulateButton_clicked()
 {
 
     // Hide process inputs
-    ui->proccesName->hide();
     ui->arrivalTime->hide();
     ui->burstTime->hide();
-    ui->label->hide();
     ui->label_2->hide();
     ui->label_3->hide();
     ui->label_4->hide();
@@ -144,56 +149,111 @@ void MainWindow::on_simulateButton_clicked()
     ui->pushButton->hide();
     ui->simulateButton->hide();
     ui->label_5->hide();
+    ui->table2->show();
+    ui->schedularType->hide();
+    ui->preBox->hide();
+    ui->piSameType->hide();
+    ui->quantumPeriod->hide();
+    ui->preLabel->hide();
+    ui->pioLabel->hide();
+    ui->pushButton_2->show();
+    ui->pushButton_3->show();
+
+
+    QWidget *firstPageWidget = new QWidget;
+    QWidget *secondPageWidget = new QWidget;
+
+    QStackedWidget *stackedWidget = ui->stackedWidget;
+       stackedWidget->addWidget(firstPageWidget);
+       stackedWidget->addWidget(secondPageWidget);
+
+
+
 
 
 
 
     // Display Options
+    QVector<process> drawingVec;
+
+    if(ui->schedularType->currentText() == "SJF"){
+        if(ui->preBox->currentText() == "Preemptive"){
+            SJF::calc_new_order_p(processes, drawingVec, processes.size());
+        } else if(ui->preBox->currentText() == "Non-Preemptive"){
+            SJF::calc_new_order_np(processes, drawingVec, processes.size());
+        }
+    }
 
 
+    float avgTime = calculateAvgWaitingTime(drawingVec);
+    ui->table2->append("Average Waiting Time : " + QString::number(avgTime) + "%");
+    ui->table2->append(" ");
+
+    ui->table2->append("Scheduled Processes Details:");
 
     QHorizontalStackedBarSeries *series = new QHorizontalStackedBarSeries();
     QValueAxis *axisX = new QValueAxis();
+    QBarCategoryAxis *axisY = new QBarCategoryAxis;
+
+
 
 
     int max = 0;
-    for (int i=0; i<processes.size() ;i++ ) {
+    QChart *chart = new QChart();
+    for (int i=0; i<drawingVec.size() ;i++ ) {
             if(i != 0){
-                int prev = processes[i-1].arrival_time+processes[i-1].burst_time;
-                if(processes[i].arrival_time > prev){
+                int prev = drawingVec[i-1].start_time+drawingVec[i-1].burst_time;
+                if(drawingVec[i].start_time > prev){
                     QBarSet *set0 = new QBarSet("Empty");
-                    *set0 << processes[i].arrival_time - prev;
+                    *set0 << drawingVec[i].start_time - prev;
                     series->append(set0);
                     QColor color = 0x687980;
                     set0->setColor(color);
 
                 }
             }
-
-            QBarSet *set0 = new QBarSet(QString::number(processes[i].process_num));
-            *set0 << processes[i].burst_time;
+//
+            QBarSet *set0 = new QBarSet("P" + QString::number(drawingVec[i].process_num));
+            *set0 << drawingVec[i].burst_time;
             series->append(set0);
-            QColor color = 0xfffff - (processes[i].process_num)*50;
+            QColor color = 0xfffff - (drawingVec[i].process_num)*50;
             set0->setColor(color);
-
-            if(max < processes[i].arrival_time+processes[i].burst_time){
-                max = processes[i].arrival_time+processes[i].burst_time;
+            set0->setLabel("P" + QString::number(drawingVec[i].process_num));
+            set0->setPen(QPen(Qt::black, 2));
+            axisY->insert(drawingVec[i].start_time,"P" + QString::number(drawingVec[i].process_num));
+            axisX->setLabelsVisible(true);
+            if(max < drawingVec[i].start_time+drawingVec[i].burst_time){
+                max = drawingVec[i].start_time+drawingVec[i].burst_time;
             }
+        QPoint point(0, drawingVec[i].start_time+drawingVec[i].burst_time);
+
+        chart->mapToPosition(point);
+        ui->table2->append("   -P" + QString::number(drawingVec[i].process_num));
+        ui->table2->append("   -Start Time: " + QString::number(drawingVec[i].start_time));
+        ui->table2->append("   -End Time: " + QString::number(drawingVec[i].start_time + drawingVec[i].burst_time));
+        ui->table2->append(" ");
+
     }
 
-    QChart *chart = new QChart();
 
+
+    axisX->setMinorTickCount(10);
     axisX->setRange(0,max);
+    axisX->setGridLineVisible(true);
+
     series->attachAxis(axisX);
 
     chart->setAnimationOptions(QChart::AllAnimations);
 
-
+    series->setLabelsVisible(true);
+    chart->setAcceptHoverEvents(true);
+    chart->setToolTip("Processes");
+//    chart->addAxis(axisY, Qt::AlignBottom);
     chart->addAxis(axisX, Qt::AlignBottom);
 
+    chart->createDefaultAxes();
 
 
-    QString alo = "tests";
 
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
@@ -214,13 +274,27 @@ void MainWindow::on_simulateButton_clicked()
     chart->setTitle("Processes");
 
 
+//    setMouseTracking(true);
 
 
+//    setCentralWidget(chartView);
 
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->addWidget(chartView);
 
-    setCentralWidget(chartView);
-    w.setLabel(alo);
-    w.show();
+    ui->stackedWidget->setCurrentWidget(chartView);
+    chartIndex =  ui->stackedWidget->currentIndex();
+
     show();
 
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(chartIndex);
 }

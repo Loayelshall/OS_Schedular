@@ -18,6 +18,7 @@ void numberProcesses::on_noProAction_clicked()
 {
     if(ui->numberOfProcesses->text() != ""){
         numberProcesses::close();
+        w.numberProccess = ui->numberOfProcesses->text().toInt();
         w.show();
 
     }

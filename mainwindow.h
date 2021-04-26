@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "avgwaiting.h"
+#include "types.h"
+#include "view.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,6 +18,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    QVector<process> processes;
+    int numberProccess;
 
 
 
@@ -29,8 +33,13 @@ private slots:
 
 
 
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
     avgWaiting w;
+    View chartUI;
 };
 #endif // MAINWINDOW_H

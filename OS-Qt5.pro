@@ -12,17 +12,26 @@ SOURCES += \
     avgwaiting.cpp \
     main.cpp \
     mainwindow.cpp \
-    numberprocesses.cpp
+    numberprocesses.cpp \
+    SJF.cpp \
+    callout.cpp \
+    view.cpp
+
 
 HEADERS += \
     avgwaiting.h \
     mainwindow.h \
-    numberprocesses.h
+    numberprocesses.h \
+    SJF.h \
+    types.h \
+    callout.h \
+    view.h
 
 FORMS += \
     avgwaiting.ui \
     mainwindow.ui \
-    numberprocesses.ui
+    numberprocesses.ui \
+    view.ui
 QT += charts
 
 # Default rules for deployment.
