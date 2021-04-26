@@ -20,7 +20,7 @@ int main()
         {
             int burst_time;
             waiting_time.push(sum_of_burst_time);
-            cout << "Enter burst time for task " << i + 1 << ": \n";
+            cout << "Enter burst time for process " << i + 1 << ": \n";
             cin >> burst_time;
             sum_of_burst_time += burst_time;
             fcfs_process.push(burst_time);
@@ -39,37 +39,37 @@ int main()
     }
     else if (sched_type == 2)
     {
-        bool sjb_preemptive;
+        bool sjf_preemptive;
         cout << "preemptive?: \n";
-        cin >> sjb_preemptive;
-        struct sjb_st
+        cin >> sjf_preemptive;
+        struct sjf_st
         {
             int burst_time, process_num, waiting_time;
         };
-        vector<sjb_st> sjb_process(num_of_proceses);
+        vector<sjf_st> sjf_process(num_of_proceses);
 
         for (size_t i = 0; i < num_of_proceses; i++)
         {
             int burst_time;
-            cout << "Enter burst time for task " << i + 1 << ": \n";
+            cout << "Enter burst time for process " << i + 1 << ": \n";
             cin >> burst_time;
-            sjb_process[i].process_num = i + 1;
-            sjb_process[i].burst_time = burst_time;
+            sjf_process[i].process_num = i + 1;
+            sjf_process[i].burst_time = burst_time;
         }
-        if (sjb_preemptive)
+        if (sjf_preemptive)
         {
             // TODO
         }
         else
         {
-            sort(sjb_process.begin(), sjb_process.end(), [](sjb_st a, sjb_st b) { return a.burst_time < b.burst_time; });
+            sort(sjf_process.begin(), sjf_process.end(), [](sjf_st a, sjf_st b) { return a.burst_time < b.burst_time; });
             cout << " Waiting time" << '\n';
             for (size_t i = 0; i < num_of_proceses; i++)
             {
-                sjb_process[i].waiting_time = sum_of_burst_time;
-                sum_of_waiting_time += sjb_process[i].waiting_time;
-                sum_of_burst_time += sjb_process[i].burst_time;
-                cout << "P" << sjb_process[i].process_num << "=" << sjb_process[i].waiting_time << "   ";
+                sjf_process[i].waiting_time = sum_of_burst_time;
+                sum_of_waiting_time += sjf_process[i].waiting_time;
+                sum_of_burst_time += sjf_process[i].burst_time;
+                cout << "P" << sjf_process[i].process_num << "=" << sjf_process[i].waiting_time << "   ";
             }
             cout << '\n'
                  << " Average Waiting time" << '\n'

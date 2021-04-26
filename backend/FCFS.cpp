@@ -5,9 +5,9 @@ int FCFS::get_input_burst_and_arrival_time(vector<process> &fcfs_process, int nu
     int burst_time, arrival_time, sum_of_burst_time = 0;
     for (size_t i = 0; i < num_of_proceses; i++)
     {
-        cout << "Enter burst time for task " << i + 1 << ": \n";
+        cout << "Enter burst time for process " << i + 1 << ": \n";
         cin >> burst_time;
-        cout << "Enter arrival time for task " << i + 1 << ": \n";
+        cout << "Enter arrival time for process " << i + 1 << ": \n";
         cin >> arrival_time;
         sum_of_burst_time += burst_time;
         fcfs_process[i].process_num = i + 1;

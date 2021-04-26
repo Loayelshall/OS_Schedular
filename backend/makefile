@@ -5,8 +5,11 @@ run: compile
 run_clean: clean compile
 	./main
 
-compile: SJF.o FCFS.o main.o
-	g++ main.o FCFS.o SJF.o -g -o main	
+compile: SJF.o FCFS.o PRI.o main.o
+	g++ main.o FCFS.o SJF.o PRI.o -g -o main	
+
+PRI.o:
+	g++ -c PRI.cpp
 
 FCFS.o:
 	g++ -c FCFS.cpp

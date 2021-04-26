@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "FCFS.h"
 #include "SJF.h"
+#include "PRI.h"
 
 using namespace std;
 
@@ -13,15 +14,13 @@ int main()
     cout << "Enter number of proceses: \n";
     cin >> num_of_proceses;
 
-    cout << "Enter scheduling criteria (1 for FCFS, 2 for SJF): \n";
+    cout << "Enter scheduling criteria (1 for FCFS, 2 for SJF, 3 for PRI): \n";
     cin >> sched_type;
     if (sched_type == 1)
     {
         vector<process> fcfs_process(num_of_proceses), fcfs_process_new;
         sum_of_burst_time = FCFS::get_input_burst_and_arrival_time(fcfs_process, num_of_proceses);
         FCFS::calc_new_order(fcfs_process, fcfs_process_new, num_of_proceses);
-        FCFS::calc_waiting_time(fcfs_process, num_of_proceses);
-        FCFS::print_waiting_time_avg_waiting_time(fcfs_process, num_of_proceses);
     }
     else if (sched_type == 2)
     {
@@ -37,8 +36,26 @@ int main()
         else
         {
             SJF::calc_new_order_np(sjf_process, sjf_process_new, num_of_proceses);
-            sum_of_waiting_time = SJF::calc_waiting_time_np(sjf_process_new, num_of_proceses);
-            SJF::print_waiting_time_avg_waiting_time_np(sjf_process_new, num_of_proceses, sum_of_waiting_time);
+        }
+    }
+    else if (sched_type == 3)
+    {
+        bool pri_preemptive;
+        cout << "preemptive?: \n";
+        cin >> pri_preemptive;
+        vector<process> pri_process(num_of_proceses), pri_process_new;
+        PRI::get_input_burst_arrival_time_priority(pri_process, num_of_proceses);
+        if (pri_preemptive)
+        {
+            PRI::calc_new_order_p(pri_process, pri_process_new, num_of_proceses);
+            for (size_t i = 0; i < pri_process_new.size(); i++)
+                cout << "P" << pri_process_new[i].process_num << "   ";
+        }
+        else
+        {
+            PRI::calc_new_order_np(pri_process, pri_process_new, num_of_proceses);
+            for (size_t i = 0; i < pri_process_new.size(); i++)
+                cout << "P" << pri_process_new[i].process_num << "   ";
         }
     }
 }
