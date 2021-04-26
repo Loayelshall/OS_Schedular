@@ -25,6 +25,20 @@ background: #02475e;
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="0">
      <widget class="QPushButton" name="pushButton_2">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+background-color: #f8f5f1;
+color:black;
+border-radius: 4px;
+height: 30px;
+}</string>
+      </property>
       <property name="text">
        <string>Processes Table</string>
       </property>
@@ -32,6 +46,20 @@ background: #02475e;
     </item>
     <item row="2" column="0">
      <widget class="QPushButton" name="pushButton_3">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+background-color: #bdc7c9;
+color:black;
+border-radius: 4px;
+height: 30px;
+}</string>
+      </property>
       <property name="text">
        <string>Chart</string>
       </property>
