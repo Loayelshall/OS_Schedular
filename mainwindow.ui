@@ -135,6 +135,27 @@ color:white;
          </layout>
         </item>
         <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="font">
+           <font>
+            <family>Century Gothic</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+background-color: green;
+color:white;
+border-radius: 4px;
+height: 30px;
+}</string>
+          </property>
+          <property name="text">
+           <string>Add new process</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QLabel" name="label_4">
           <property name="font">
            <font>
@@ -337,27 +358,6 @@ background-color: #f8f5f1;
           </property>
           <property name="placeholderText">
            <string>Please enter quantum period</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton">
-          <property name="font">
-           <font>
-            <family>Century Gothic</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
-background-color: green;
-color:white;
-border-radius: 4px;
-height: 30px;
-}</string>
-          </property>
-          <property name="text">
-           <string>Add new process</string>
           </property>
          </widget>
         </item>
