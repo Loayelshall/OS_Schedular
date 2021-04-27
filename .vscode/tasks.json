@@ -10,6 +10,8 @@
                 "${fileDirname}/FCFS.cpp",
                 "${fileDirname}/SJF.cpp",
                 "${fileDirname}/PRI.cpp",
+                "${fileDirname}/RR.cpp",
+                "${fileDirname}/avg_time.cpp",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

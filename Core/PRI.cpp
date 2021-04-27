@@ -15,6 +15,7 @@ void PRI::get_input_burst_arrival_time_priority(vector<process> &pri_process, in
         pri_process[i].process_num = i + 1;
         pri_process[i].burst_time = burst_time;
         pri_process[i].arrival_time = arrival_time;
+        pri_process[i].stop_time = arrival_time;
         pri_process[i].priority_num = priority_num;
     }
 }

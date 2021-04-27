@@ -13,6 +13,7 @@ void SJF::get_input_burst_and_arrival_time(vector<process> &sjf_process, int num
         sjf_process[i].process_num = i + 1;
         sjf_process[i].burst_time = burst_time;
         sjf_process[i].arrival_time = arrival_time;
+        sjf_process[i].stop_time = arrival_time;
     }
 }
 
@@ -117,27 +118,4 @@ void SJF::calc_new_order_p(vector<process> &sjf_process, vector<process> &sjf_pr
             }
         }
     }
-}
-
-float SJF::calc_waiting_time_np(vector<process> &sjf_process, int num_of_proceses)
-{
-    int sum_of_burst_time = 0, sum_of_waiting_time = 0;
-    for (size_t i = 0; i < num_of_proceses; i++)
-    {
-        sjf_process[i].waiting_time = sum_of_burst_time;
-        sum_of_waiting_time += sjf_process[i].waiting_time;
-        sum_of_burst_time += sjf_process[i].burst_time;
-    }
-    return sum_of_waiting_time;
-}
-
-void SJF::print_waiting_time_avg_waiting_time_np(vector<process> &sjf_process, int num_of_proceses, float sum_of_waiting_time)
-{
-    cout << " Waiting time" << '\n';
-    for (size_t i = 0; i < num_of_proceses; i++)
-        cout << "P" << sjf_process[i].process_num << "=" << sjf_process[i].waiting_time << "   ";
-
-    cout << '\n'
-         << " Average Waiting time" << '\n'
-         << sum_of_waiting_time / num_of_proceses;
 }
