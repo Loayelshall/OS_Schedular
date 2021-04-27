@@ -173,7 +173,14 @@ color: white;
          </widget>
         </item>
         <item>
-         <widget class="QTextBrowser" name="table2"/>
+         <widget class="QTextBrowser" name="table2">
+          <property name="font">
+           <font>
+            <family>Century Gothic</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_5">

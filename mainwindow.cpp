@@ -42,7 +42,7 @@ float calculateAvgWaitingTime(QVector<process> processes){
     }
 
     for (int i = 0; i < unique.size() ; i++) {
-        avgWaiting = unique[i].start_time - unique[i].arrival_time;
+        avgWaiting += unique[i].start_time - unique[i].arrival_time;
     }
 
     return avgWaiting/unique.size();
