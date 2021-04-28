@@ -54,8 +54,8 @@ class View: public QGraphicsView
 
 public:
     View(QWidget *parent = 0);
-    QVector<process> processes;
-    void setProcesses(QVector<process> test){
+    QQVector<process> processes;
+    void setProcesses(QQVector<process> test){
         processes = test;
     }
 

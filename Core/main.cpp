@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <QVector>
 #include <numeric>
 #include <algorithm>
 #include "FCFS.h"
@@ -20,7 +20,7 @@ int main()
     cin >> sched_type;
     if (sched_type == 1)
     {
-        vector<process> fcfs_process(num_of_proceses), fcfs_process_new;
+        QVector<process> fcfs_process(num_of_proceses), fcfs_process_new;
         FCFS::get_input_burst_and_arrival_time(fcfs_process, num_of_proceses);
         FCFS::calc_new_order(fcfs_process, fcfs_process_new, num_of_proceses);
     }
@@ -29,7 +29,7 @@ int main()
         bool sjf_preemptive;
         cout << "preemptive?: \n";
         cin >> sjf_preemptive;
-        vector<process> sjf_process(num_of_proceses), sjf_process_new;
+        QVector<process> sjf_process(num_of_proceses), sjf_process_new;
         SJF::get_input_burst_and_arrival_time(sjf_process, num_of_proceses);
         if (sjf_preemptive)
             SJF::calc_new_order_p(sjf_process, sjf_process_new, num_of_proceses);
@@ -42,12 +42,35 @@ int main()
         bool pri_preemptive;
         cout << "preemptive?: \n";
         cin >> pri_preemptive;
-        vector<process> pri_process(num_of_proceses), pri_process_new;
+        QVector<process> pri_process(num_of_proceses), pri_process_new;
         PRI::get_input_burst_arrival_time_priority(pri_process, num_of_proceses);
         if (pri_preemptive)
             PRI::calc_new_order_p(pri_process, pri_process_new, num_of_proceses);
 
         else
             PRI::calc_new_order_np(pri_process, pri_process_new, num_of_proceses);
+    }
+    else if (sched_type == 4)
+    {
+        float quantum_time;
+        cout << "enter quantum: \n";
+        cin >> quantum_time;
+        QVector<process> rr_process(num_of_proceses), rr_process_new;
+        RR::get_input_burst_and_arrival_time(rr_process, num_of_proceses);
+        RR::calc_new_order(rr_process, rr_process_new, num_of_proceses, quantum_time);
+        for (int i = 0; i < rr_process.size(); i++)
+        {
+            cout << "rr_process[" << i << "].process_num"
+                 << "=" << rr_process[i].process_num << '\n'
+                 << "rr_process[" << i << "].burst_time"
+                 << "=" << rr_process[i].burst_time << '\n'
+                 << "rr_process[" << i << "].start_time"
+                 << "=" << rr_process[i].start_time << '\n'
+                 << "rr_process[" << i << "].waiting_time"
+                 << "=" << rr_process[i].waiting_time << '\n'
+                 << "rr_process[" << i << "].arrival_time"
+                 << "=" << rr_process[i].arrival_time << '\n'
+                 << "time= " << time << '\n';
+        }
     }
 }

@@ -1,7 +1,7 @@
 
 #include "SJF.h"
 
-void SJF::get_input_burst_and_arrival_time(vector<process> &sjf_process, int num_of_proceses)
+void SJF::get_input_burst_and_arrival_time(QVector<process> &sjf_process, int num_of_proceses)
 {
     for (size_t i = 0; i < num_of_proceses; i++)
     {
@@ -17,7 +17,7 @@ void SJF::get_input_burst_and_arrival_time(vector<process> &sjf_process, int num
     }
 }
 
-void SJF::calc_new_order_np(vector<process> &sjf_process, vector<process> &sjf_process_new, int num_of_proceses)
+void SJF::calc_new_order_np(QVector<process> &sjf_process, QVector<process> &sjf_process_new, int num_of_proceses)
 {
     int current_time = 0, min_index = -1;
     // sort wrt arrival time
@@ -57,7 +57,7 @@ void SJF::calc_new_order_np(vector<process> &sjf_process, vector<process> &sjf_p
     }
 }
 
-void SJF::calc_new_order_p(vector<process> &sjf_process, vector<process> &sjf_process_new, int num_of_proceses)
+void SJF::calc_new_order_p(QVector<process> &sjf_process, QVector<process> &sjf_process_new, int num_of_proceses)
 {
     int current_time = 0, min_index = -1;
     // sort wrt arrival time

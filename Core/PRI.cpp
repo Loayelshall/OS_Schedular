@@ -1,7 +1,7 @@
 #include "PRI.h"
 
 
-void PRI::get_input_burst_arrival_time_priority(vector<process> &pri_process, int num_of_proceses)
+void PRI::get_input_burst_arrival_time_priority(QVector<process> &pri_process, int num_of_proceses)
 {
     for (size_t i = 0; i < num_of_proceses; i++)
     {
@@ -20,7 +20,7 @@ void PRI::get_input_burst_arrival_time_priority(vector<process> &pri_process, in
     }
 }
 
-void PRI::calc_new_order_np(vector<process> &pri_process, vector<process> &pri_process_new, int num_of_proceses)
+void PRI::calc_new_order_np(QVector<process> &pri_process, QVector<process> &pri_process_new, int num_of_proceses)
 {
     int current_time = 0, min_index = -1;
     // sort wrt arrival time
@@ -60,7 +60,7 @@ void PRI::calc_new_order_np(vector<process> &pri_process, vector<process> &pri_p
     }
 }
 
-void PRI::calc_new_order_p(vector<process> &pri_process, vector<process> &pri_process_new, int num_of_proceses)
+void PRI::calc_new_order_p(QVector<process> &pri_process, QVector<process> &pri_process_new, int num_of_proceses)
 {
     int current_time = 0, min_index = -1;
     // sort wrt arrival time

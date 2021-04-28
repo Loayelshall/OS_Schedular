@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QVector>
+#include <QQVector>
 #include <algorithm>
 #include <SJF.h>
 
@@ -23,9 +23,9 @@ int currentIndex = 0;
 
 
 // Calculating avg waiting time
-float calculateAvgWaitingTime(QVector<process> processes){
+float calculateAvgWaitingTime(QQVector<process> processes){
     float avgWaiting = 0;
-    QVector<process> unique;
+    QQVector<process> unique;
     unique.append(processes[0]);
     for (int i = 1; i<processes.size() ;i++ ) {
         int didFind = 0;
@@ -49,8 +49,8 @@ float calculateAvgWaitingTime(QVector<process> processes){
 }
 
 
-// Processes main vector
-QVector<process> processes;
+// Processes main QVector
+QQVector<process> processes;
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -80,7 +80,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     if(currentIndex < numberProccess){
-        // Taking input from user and saving it in a vector
+        // Taking input from user and saving it in a QVector
         process tempSt;
         tempSt.burst_time = ui->burstTime->text().toInt();
         tempSt.process_num = currentIndex;
@@ -174,7 +174,7 @@ void MainWindow::on_simulateButton_clicked()
 
 
     // Display Options
-    QVector<process> drawingVec;
+    QQVector<process> drawingVec;
 
     if(ui->schedularType->currentText() == "SJF"){
         if(ui->preBox->currentText() == "Preemptive"){

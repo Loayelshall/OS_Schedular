@@ -46,7 +46,7 @@ int main()
         {
             int burst_time, process_num, waiting_time;
         };
-        vector<sjf_st> sjf_process(num_of_proceses);
+        QVector<sjf_st> sjf_process(num_of_proceses);
 
         for (size_t i = 0; i < num_of_proceses; i++)
         {

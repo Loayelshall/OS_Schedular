@@ -3,7 +3,7 @@
 
 #include <QApplication>
 
-void SJF::get_input_burst_and_arrival_time(QVector<process> &sjf_process, int num_of_proceses)
+void SJF::get_input_burst_and_arrival_time(QQVector<process> &sjf_process, int num_of_proceses)
 {
     for (size_t i = 0; i < num_of_proceses; i++)
     {
@@ -18,7 +18,7 @@ void SJF::get_input_burst_and_arrival_time(QVector<process> &sjf_process, int nu
     }
 }
 
-void SJF::calc_new_order_np(QVector<process> &sjf_process, QVector<process> &sjf_process_new, int num_of_proceses)
+void SJF::calc_new_order_np(QQVector<process> &sjf_process, QQVector<process> &sjf_process_new, int num_of_proceses)
 {
     int current_time = 0, min_index = -1;
     // sort wrt arrival time
@@ -58,7 +58,7 @@ void SJF::calc_new_order_np(QVector<process> &sjf_process, QVector<process> &sjf
     }
 }
 
-void SJF::calc_new_order_p(QVector<process> &sjf_process, QVector<process> &sjf_process_new, int num_of_proceses)
+void SJF::calc_new_order_p(QQVector<process> &sjf_process, QQVector<process> &sjf_process_new, int num_of_proceses)
 {
     int current_time = 0, min_index = -1;
     // sort wrt arrival time
@@ -121,7 +121,7 @@ void SJF::calc_new_order_p(QVector<process> &sjf_process, QVector<process> &sjf_
     }
 }
 
-float SJF::calc_waiting_time_np(QVector<process> &sjf_process, int num_of_proceses)
+float SJF::calc_waiting_time_np(QQVector<process> &sjf_process, int num_of_proceses)
 {
     int sum_of_burst_time = 0, sum_of_waiting_time = 0;
     for (size_t i = 0; i < num_of_proceses; i++)
@@ -133,7 +133,7 @@ float SJF::calc_waiting_time_np(QVector<process> &sjf_process, int num_of_proces
     return sum_of_waiting_time;
 }
 
-void SJF::print_waiting_time_avg_waiting_time_np(QVector<process> &sjf_process, int num_of_proceses, float sum_of_waiting_time)
+void SJF::print_waiting_time_avg_waiting_time_np(QQVector<process> &sjf_process, int num_of_proceses, float sum_of_waiting_time)
 {
     cout << " Waiting time" << '\n';
     for (size_t i = 0; i < num_of_proceses; i++)
