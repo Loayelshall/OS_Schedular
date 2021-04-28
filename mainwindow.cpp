@@ -3,7 +3,8 @@
 #include <QQVector>
 #include <algorithm>
 #include <SJF.h>
-
+#include <PRI.h>
+#include <FCFS.h>
 #include <QApplication>
 #include <QtCharts/QChartView>
 #include <QtCharts/QBarSeries>
@@ -59,14 +60,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->quantumPeriod->hide();
-    ui->piSameType->hide();
-    ui->pioLabel->hide();
     ui->preLabel->hide();
     ui->preBox->hide();
     ui->simulateButton->setEnabled(false);
     ui->table2->hide();
     ui->pushButton_3->hide();
     ui->pushButton_2->hide();
+    ui->processPio->hide();
+    ui->label_6->hide();
 
 
 }
@@ -85,6 +86,9 @@ void MainWindow::on_pushButton_clicked()
         tempSt.burst_time = ui->burstTime->text().toInt();
         tempSt.process_num = currentIndex;
         tempSt.arrival_time = ui->arrivalTime->text().toInt();
+        if(ui->schedularType->currentText() == "Priority"){
+            tempSt.priority_num = ui->processPio->text().toInt();
+        }
         processes.append(tempSt);
 
         currentIndex++;
@@ -92,6 +96,9 @@ void MainWindow::on_pushButton_clicked()
         ui->textBrowser->append("Process: " + QString::number(tempSt.process_num));
         ui->textBrowser->append("Arrival Time: " + QString::number(tempSt.arrival_time));
         ui->textBrowser->append("Burst Time: " + QString::number(tempSt.burst_time));
+        if(ui->schedularType->currentText() == "Priority"){
+             ui->textBrowser->append("Priority : " + QString::number(tempSt.priority_num));
+        }
         ui->textBrowser->append(" ");
 
         ui->simulateButton->setEnabled(true);
@@ -108,28 +115,30 @@ void MainWindow::on_schedularType_currentIndexChanged(const QString &arg1)
 {
     if(arg1 == "RR"){
         ui->quantumPeriod->show();
-        ui->piSameType->hide();
         ui->preBox->hide();
+        ui->processPio->hide();
+        ui->preLabel->hide();
+        ui->label_6->hide();
 
     } else if(arg1 == "Priority"){
         ui->quantumPeriod->hide();
-        ui->piSameType->show();
         ui->preBox->show();
-        ui->pioLabel->show();
         ui->preLabel->show();
+        ui->processPio->show();
+        ui->label_6->show();
 
     } else if(arg1 == "SJF"){
         ui->quantumPeriod->hide();
-        ui->piSameType->hide();
         ui->preBox->show();
-        ui->pioLabel->hide();
         ui->preLabel->show();
+        ui->processPio->hide();
+        ui->label_6->hide();
     } else {
         ui->quantumPeriod->hide();
-        ui->piSameType->hide();
         ui->preBox->hide();
-        ui->pioLabel->hide();
         ui->preLabel->hide();
+        ui->processPio->hide();
+        ui->label_6->hide();
     }
 }
 
@@ -152,12 +161,12 @@ void MainWindow::on_simulateButton_clicked()
     ui->table2->show();
     ui->schedularType->hide();
     ui->preBox->hide();
-    ui->piSameType->hide();
     ui->quantumPeriod->hide();
     ui->preLabel->hide();
-    ui->pioLabel->hide();
     ui->pushButton_2->show();
     ui->pushButton_3->show();
+    ui->processPio->hide();
+    ui->label_6->hide();
 
 
     QWidget *firstPageWidget = new QWidget;
@@ -182,6 +191,14 @@ void MainWindow::on_simulateButton_clicked()
         } else if(ui->preBox->currentText() == "Non-Preemptive"){
             SJF::calc_new_order_np(processes, drawingVec, processes.size());
         }
+    } else if(ui->schedularType->currentText() == "Priority"){
+        if(ui->preBox->currentText() == "Preemptive"){
+            PRI::calc_new_order_p(processes, drawingVec, processes.size());
+        } else if(ui->preBox->currentText() == "Non-Preemptive"){
+            PRI::calc_new_order_np(processes, drawingVec, processes.size());
+        }
+    } else if(ui->schedularType->currentText() == "FCFS"){
+        FCFS::calc_new_order(processes, drawingVec, processes.size());
     }
 
 

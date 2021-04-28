@@ -15,7 +15,9 @@ SOURCES += \
     numberprocesses.cpp \
     SJF.cpp \
     callout.cpp \
-    view.cpp
+    view.cpp \
+    PRI.cpp \
+    FCFS.cpp
 
 
 HEADERS += \
@@ -25,7 +27,9 @@ HEADERS += \
     SJF.h \
     types.h \
     callout.h \
-    view.h
+    view.h \
+    PRI.h \
+    FCFS.h
 
 FORMS += \
     avgwaiting.ui \
