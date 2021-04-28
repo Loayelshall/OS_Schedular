@@ -1,10 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QQVector>
+#include <RR.h>
+#include <QVector>
 #include <algorithm>
 #include <SJF.h>
 #include <PRI.h>
 #include <FCFS.h>
+#include <avg_time.h>
 #include <QApplication>
 #include <QtCharts/QChartView>
 #include <QtCharts/QBarSeries>
@@ -23,35 +25,10 @@ int chartIndex;
 int currentIndex = 0;
 
 
-// Calculating avg waiting time
-float calculateAvgWaitingTime(QQVector<process> processes){
-    float avgWaiting = 0;
-    QQVector<process> unique;
-    unique.append(processes[0]);
-    for (int i = 1; i<processes.size() ;i++ ) {
-        int didFind = 0;
-        for(int j = 0; j < unique.size() ; j++){
-            if(processes[i].arrival_time == unique[j].arrival_time &&
-                    processes[i].process_num == unique[j].process_num &&
-                        processes[i].burst_time == unique[j].burst_time){
-                didFind = 1;
-            }
-        }
-        if(didFind == 0){
-            unique.append(processes[i]);
-        }
-    }
-
-    for (int i = 0; i < unique.size() ; i++) {
-        avgWaiting += unique[i].start_time - unique[i].arrival_time;
-    }
-
-    return avgWaiting/unique.size();
-}
 
 
 // Processes main QVector
-QQVector<process> processes;
+QVector<process> processes;
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -177,13 +154,8 @@ void MainWindow::on_simulateButton_clicked()
        stackedWidget->addWidget(secondPageWidget);
 
 
-
-
-
-
-
     // Display Options
-    QQVector<process> drawingVec;
+    QVector<process> drawingVec;
 
     if(ui->schedularType->currentText() == "SJF"){
         if(ui->preBox->currentText() == "Preemptive"){
@@ -198,11 +170,14 @@ void MainWindow::on_simulateButton_clicked()
             PRI::calc_new_order_np(processes, drawingVec, processes.size());
         }
     } else if(ui->schedularType->currentText() == "FCFS"){
-        FCFS::calc_new_order(processes, drawingVec, processes.size());
+         FCFS::calc_new_order(processes, drawingVec, processes.size());
+    } else {
+         RR::calc_new_order(processes, drawingVec, processes.size(), ui->quantumPeriod->text().toFloat());
     }
 
 
-    float avgTime = calculateAvgWaitingTime(drawingVec);
+    float avgTime = avg_waiting_time(drawingVec ,drawingVec.size());
+//    float avgTime = 10.1;
     ui->table2->append("Average Waiting Time : " + QString::number(avgTime) + "%");
     ui->table2->append(" ");
 

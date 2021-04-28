@@ -17,7 +17,9 @@ SOURCES += \
     callout.cpp \
     view.cpp \
     PRI.cpp \
-    FCFS.cpp
+    FCFS.cpp \
+    RR.cpp \
+    avg_time.cpp
 
 
 HEADERS += \
@@ -29,7 +31,10 @@ HEADERS += \
     callout.h \
     view.h \
     PRI.h \
-    FCFS.h
+    FCFS.h \
+    RR.h \
+    avg_time.h
+
 
 FORMS += \
     avgwaiting.ui \
