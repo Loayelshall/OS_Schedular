@@ -1,6 +1,6 @@
 #include "FCFS.h"
 
-void FCFS::get_input_burst_and_arrival_time(vector<process> &fcfs_process, int num_of_proceses)
+void FCFS::get_input_burst_and_arrival_time(QVector<process> &fcfs_process, int num_of_proceses)
 {
     int burst_time, arrival_time;
     for (size_t i = 0; i < num_of_proceses; i++)
@@ -15,7 +15,7 @@ void FCFS::get_input_burst_and_arrival_time(vector<process> &fcfs_process, int n
     }
 }
 
-void FCFS::calc_new_order(vector<process> &fcfs_process, vector<process> &fcfs_process_new, int num_of_proceses)
+void FCFS::calc_new_order(QVector<process> &fcfs_process, QVector<process> &fcfs_process_new, int num_of_proceses)
 {
     int sum_of_burst_time = 0;
     sort(fcfs_process.begin(), fcfs_process.end(), [](process a, process b) { return a.arrival_time < b.arrival_time; });
