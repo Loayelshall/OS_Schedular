@@ -23,6 +23,20 @@ int main()
         QVector<process> fcfs_process(num_of_proceses), fcfs_process_new;
         FCFS::get_input_burst_and_arrival_time(fcfs_process, num_of_proceses);
         FCFS::calc_new_order(fcfs_process, fcfs_process_new, num_of_proceses);
+        for (int i = 0; i < fcfs_process_new.size(); i++)
+        {
+            cout << "fcfs_process_new[" << i << "].process_num"
+                 << "=" << fcfs_process_new[i].process_num << '\n'
+                 << "fcfs_process_new[" << i << "].burst_time"
+                 << "=" << fcfs_process_new[i].burst_time << '\n'
+                 << "fcfs_process_new[" << i << "].start_time"
+                 << "=" << fcfs_process_new[i].start_time << '\n'
+                 << "fcfs_process_new[" << i << "].waiting_time"
+                 << "=" << fcfs_process_new[i].waiting_time << '\n'
+                 << "fcfs_process_new[" << i << "].arrival_time"
+                 << "=" << fcfs_process_new[i].arrival_time << '\n'
+                 << "time= " << time << '\n';
+        }
     }
     else if (sched_type == 2)
     {
@@ -58,18 +72,18 @@ int main()
         QVector<process> rr_process(num_of_proceses), rr_process_new;
         RR::get_input_burst_and_arrival_time(rr_process, num_of_proceses);
         RR::calc_new_order(rr_process, rr_process_new, num_of_proceses, quantum_time);
-        for (int i = 0; i < rr_process.size(); i++)
+        for (int i = 0; i < rr_process_new.size(); i++)
         {
-            cout << "rr_process[" << i << "].process_num"
-                 << "=" << rr_process[i].process_num << '\n'
-                 << "rr_process[" << i << "].burst_time"
-                 << "=" << rr_process[i].burst_time << '\n'
-                 << "rr_process[" << i << "].start_time"
-                 << "=" << rr_process[i].start_time << '\n'
-                 << "rr_process[" << i << "].waiting_time"
-                 << "=" << rr_process[i].waiting_time << '\n'
-                 << "rr_process[" << i << "].arrival_time"
-                 << "=" << rr_process[i].arrival_time << '\n'
+            cout << "rr_process_new[" << i << "].process_num"
+                 << "=" << rr_process_new[i].process_num << '\n'
+                 << "rr_process_new[" << i << "].burst_time"
+                 << "=" << rr_process_new[i].burst_time << '\n'
+                 << "rr_process_new[" << i << "].start_time"
+                 << "=" << rr_process_new[i].start_time << '\n'
+                 << "rr_process_new[" << i << "].waiting_time"
+                 << "=" << rr_process_new[i].waiting_time << '\n'
+                 << "rr_process_new[" << i << "].arrival_time"
+                 << "=" << rr_process_new[i].arrival_time << '\n'
                  << "time= " << time << '\n';
         }
     }
