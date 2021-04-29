@@ -18,7 +18,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    QQVector<process> processes;
+    QVector<process> processes;
     int numberProccess;
 
 
